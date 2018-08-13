@@ -1,131 +1,207 @@
 <template>
   <div>
-    <canvas id="time-pie"></canvas>
+    <div>
+      <canvas id="full-scatter"></canvas>
+    </div>
+    <div class="wrapper">
+      <div class="box">
+        <canvas id="scoped-scatter"></canvas>
+      </div>
+      <div class="box">
+        <div id="tweet"></div>
+        <div>
+          <blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">{{ horseTweet.text }}</p>&mdash; {{ horseTweet.user.name }} ({{ horseTweet.user.screen_name }}) <a :href="'https://twitter.com/' + horseTweet.screen_name + '/status/' + horseTweet.id ">{{ horseTweet.created_at }}</a></blockquote>
+          <blockquote class="twitter-tweet" data-cards="hidden" data-lang="en"><p lang="en" dir="ltr">{{ originalTweet.text }}</p>&mdash; {{ originalTweet.user.name }} ({{ originalTweet.user.screen_name }}) <a :href="'https://twitter.com/' + originalTweet.screen_name + '/status/' + originalTweet.id ">{{ originalTweet.created_at }}</a></blockquote>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
-  import Chart from 'chart.js';
-  import moment from 'moment';
+import axios from "axios";
+import moment from "moment";
+import Chart from "chart.js";
 
-  export default {
-    created() {
-      const offset = -7;
+const offset = -7;
 
-      axios.get('http://localhost:7071/api/GetTimeSeries').then(result => {
-        const pieData = [];
+export default {
+  data() {
+    return {
+      horseTweet: {
+        text: "",
+        user: {},
+        created_at: "",
+        id: ""
+      },
+      originalTweet: {
+        text: "",
+        user: {},
+        created_at: "",
+        id: ""
+      }
+    };
+  },
+  created() {
+    let url = 'https://horsetweets.azurewebsites.net/api/GetTimeSeries';
+    axios.get(url).then(result => {
+      const scatterData = {
+        horse: [],
+        original: []
+      };
 
-        const horseData = result.data.forEach(item => {
-          let horseCreatedAt = item.horse ? moment(item.horse.created_at).add(-7, 'hours') : null;
-          let originalCreatedAt = item.original ? moment(item.original.created_at).add(-7, 'hours') : null;
+      const scopedScatterData = {
+        horse: [],
+        original: []
+      };
 
-          // push pie data
-          pieData.push(horseCreatedAt.hour());
+      const horseData = result.data.forEach(item => {
 
-        });
+        // only get tweets with a source
+        if (item.original) {
+          item.horse.created_at = moment(item.horse.created_at).add(offset, 'hours');
+          item.original.created_at = moment(item.original.created_at).add(offset, 'hours');
 
-        // create all the charts
-        this.createCharts({ pieData: pieData, scatterData: scatterData, scopedScatterData: scopedScatterData });
+          // push all scatter data
+          this.pushScatterData(scatterData, item);
+
+          // scope the data to tweets that happen within 5 minutes of each other
+          let dif = moment
+            .duration(item.horse.created_at.diff(item.original.created_at))
+            .asMinutes();
+          if (dif < 1) {
+            this.pushScatterData(scopedScatterData, item);
+          }
+
+        }
       });
+
+      // create all the charts
+      this.createScatter(scatterData, scopedScatterData);
+    });
+  },
+  methods: {
+    pushScatterData(container, item) {
+      container.horse.push(this.mapItem(item.horse, item.original));
+      container.original.push(this.mapItem(item.original, item.horse));
     },
-    methods: {
-      pushScatterData(container, horseCreatedAt, originalCreatedAt, item) {
-        container.horse.push({ x: horseCreatedAt, y: `${horseCreatedAt.hour()}${horseCreatedAt.minute()}`, text: item.horse.text, id: item.horse.id_str, screenName: item.horse.user.screen_name });
-        if (originalCreatedAt) {
-          container.original.push({ x: originalCreatedAt, y: `${originalCreatedAt.hour()}${originalCreatedAt.minute()}`, text: item.original.text, id: item.original.id_str, screenName: item.original.user.screen_name });
-        }
-      },
-      createCharts(data) {
-        this.createScatter(data.scopedScatterData);
-        this.createPie(data.pieData);
-      },
-      groupByBlock(data) {
-        return function(min, max) {
-          let total = 0;
+    mapItem(tweet, related) {
+      return {
+        x: tweet.created_at,
+        y: `${tweet.created_at.hour()}${tweet.created_at.minute()}`,
+        tweet: tweet,
+        related: related
+      };
+    },
+    createScatter(fullScatterData, scopedScatterData) {
+      let vue = this;
 
-          data.forEach(item => {
-            if (item >= min && item < max ) {
-              total = total + 1;
-            }
-          });
-
-          return total;
-        }
-      },
-
-      createPie(data) {
-
-        let grouper = this.groupByBlock(data);
-        const pieData = [ grouper(0, 6), grouper(6, 12), grouper(12, 18), grouper(18, 24)]
-
-        const ctx = document.getElementById('time-pie');
-
-        new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: ["Early Morning (Midnight - 6 AM)", "Morning (Midnight - 6 AM)", "Afternoon (Noon - 6 PM)", "Evening (6PM - Midnight)"],
-            datasets: [{
-              label: "Tweets By Time Of Day",
-              backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9"],
-              data: pieData
-            }]
-          },
-          options: {
-            title: {
-              display: true,
-              text: 'When Is @horse_js Tweeting?'
+      const options = {
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var label =
+                data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].tweet
+                  .text;
+              return label;
             }
           }
-        });
-      },
-      createScatter(data) {
-        const ctx = document.getElementById('time-scatter');
-        const myChart = new Chart(ctx, {
-          type: 'scatter',
-          data: {
-            datasets: [
-              {
-                label: "@horse_js",
-                data: data.horse,
-                pointBackgroundColor: "rgba(224, 0, 120, 0.3)",
-                pointRadius: 10,
-              },
-              {
-                label: "Original Tweet",
-                data: data.original,
-                pointBackgroundColor: "rgba(134, 171, 208, 0.42)",
-                pointRadius: 10
-              }
-            ]
-          },
-          options: {
-            tooltips: {
-              callbacks: {
-                label: function(tooltipItem, data) {
-                  var label = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index].text;
-                  return label;
-                }
-              }
-            },
-            scales: {
-              xAxes: [{
-                type: 'time'
-              }]
-            },
-            onClick: function(event, item) {
-              // get the item from the data set
-              if (item[0]) {
-                let tweet = item[0]._chart.data.datasets[item[0]._datasetIndex].data[item[0]._index];
-                window.open(`https://twitter.com/${tweet.screenName}/status/${tweet.id}`);
-              }
+        },
+        scales: {
+          xAxes: [
+            {
+              type: "time"
             }
+          ]
+        },
+        onClick: function(event, item) {
+          // get the item from the data set
+          if (item[0]) {
+            let dataset = item[0]._chart.config.data.datasets[item[0]._datasetIndex];
+            let index = item[0]._index;
+
+            let dataItem = dataset.data[index];
+
+            if (dataItem) {
+              vue.horseTweet = dataItem.tweet;
+              vue.originalTweet = dataItem.related;
+            }
+
+            twttr.widgets.load();
+          }
+        }
+      };
+
+      const fullScatterEl = document.getElementById("full-scatter");
+      new Chart(fullScatterEl, {
+        type: "scatter",
+        data: {
+          datasets: [
+            {
+              label: "@horse_js",
+              data: fullScatterData.horse,
+              pointBackgroundColor: "rgba(224, 0, 120, 0.3)",
+              pointRadius: 10
+            },
+            {
+              label: "Original Tweet",
+              data: fullScatterData.original,
+              pointBackgroundColor: "rgba(134, 171, 208, 0.42)",
+              pointRadius: 10
+            }
+          ]
+        },
+        options: {
+          scales: {
+            xAxes: [{
+                type: "time"
+            }]
           },
-        });
-      }
+          elements: {
+            line: {
+              tension: 0
+            }
+          }
+        }
+      });
+
+      const scopedScatterEl = document.getElementById("scoped-scatter");
+      new Chart(scopedScatterEl, {
+        type: "scatter",
+        data: {
+          datasets: [
+            {
+              label: "@horse_js",
+              data: scopedScatterData.horse,
+              pointBackgroundColor: "rgba(224, 0, 120, 0.3)",
+              pointRadius: 10
+            },
+            {
+              label: "Original Tweet",
+              data: scopedScatterData.original,
+              pointBackgroundColor: "rgba(134, 171, 208, 0.42)",
+              pointRadius: 10
+            }
+          ]
+        },
+        options: options
+      });
     }
   }
+};
 </script>
 
 <style scoped>
+.wrapper {
+  display: grid;
+  grid-template-columns: 50% auto;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+}
+
+.box {
+  border-radius: 5px;
+  padding: 20px;
+}
 </style>

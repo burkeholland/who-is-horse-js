@@ -10,9 +10,7 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "@progress/kendo-charts": "^1.10.0",
     "@progress/kendo-charts-vue-wrapper": "^2018.2.620",
-    "@progress/kendo-ui": "^2018.2.620",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
     "jquery": "^3.3.1",

@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Scatter></Scatter>
+    <TimeSeries></TimeSeries>
+    <MostTweeted></MostTweeted>
   </div>
 </template>
 
 <script>
-import Scatter from './components/Scatter.vue';
+import TimeSeries from './components/TimeSeries.vue';
+import MostTweeted from './components/MostTweeted.vue';
 
 export default {
   name: 'app',
   components: {
-    Scatter
+    TimeSeries,
+    MostTweeted
   }
 }
 </script>
