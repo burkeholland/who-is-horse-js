@@ -1,17 +1,7 @@
 <template>
   <div>
     <div>
-      <canvas id="horse-scatter"></canvas>
-      <p>What you are looking at here is every single @horse_js tweet from the past 2 years. The left side of the graph is the time in 24 hour format. All times are Central Standard Time.</p>
-      <p>What we can see here, is that @horse_js is likely in either Mountain Time, Central Time, or Eastern Time. Their last tweets are made right around the 10 - 11 PM timeframe, and they resume tweeting at approximately 7 - 8 AM. Aside from some very late nights on November 4th, 2016 and April 12th 2018, @horse_js is "early to bed, early to rise". They are likely <bold>not</bold> on Pacific Time as that would have them going to bed at 8 and getting up at 4. That's a little too "early to rise".</p>
-      <p>Based on this analysis, we made the assumption that @horse_js is in Central Standard Time.</p>
-      <p>The other time series data set we can look at are the original tweets that @horse_js quotes.</p>
-      <canvas id="original-scatter"></canvas>
-      <p>These tweets are more evenly spread out, but they still show a gap at roughly the same time that @horse_js is likely asleep. We can overly @horse_js tweets onto this chart to get a better feel for the pattern of original tweet and @horse_js tweet.</p>
       <canvas id="full-scatter"></canvas>
-      <p>If you look carefully, you will notice that there are some circles that are light pink. This is because there is a blue dot and pink dot right on top of each other. In other words, these are tweets that @horse_js saw quickly and quoted quickly. So quickly that both the @horse_js tweet and the original tweet show up on top of each other on the chart.</p>
-      <p>We can make an assumption here that if @horse_js quotes a tweet within 2 minutes of that tweet being posted, it's highly likely that either @horse_js, or the true identify of @horse_js is following this person directly.</p>
-      <p>Here is a chart of all @horse_js tweets that occured within 2 minutes or less of the original tweet.</p>
       <canvas id="scoped-scatter"></canvas>
     </div>
   </div>
@@ -131,61 +121,7 @@ export default {
         }
       };
 
-      const horseScatterEl = document.getElementById('horse-scatter');
-      new Chart(horseScatterEl, {
-        type: "scatter",
-        data: {
-          datasets: [
-            {
-              label: "@horse_js",
-              data: fullScatterData.horse,
-              pointBackgroundColor: "rgba(224, 0, 120, 0.3)",
-              pointRadius: 10
-            }
-          ]
-        },
-        options: {
-          scales: {
-            xAxes: [{
-                type: "time"
-            }]
-          },
-          elements: {
-            line: {
-              tension: 0
-            }
-          }
-        }
-      })
-
-      const originalScatterEl = document.getElementById('original-scatter');
-      new Chart(originalScatterEl, {
-        type: "scatter",
-        data: {
-          datasets: [
-            {
-              label: "Original Tweet",
-              data: fullScatterData.original,
-              pointBackgroundColor: "rgba(134, 171, 208, 0.42)",
-              pointRadius: 10
-            }
-          ]
-        },
-        options: {
-          scales: {
-            xAxes: [{
-                type: "time"
-            }]
-          },
-          elements: {
-            line: {
-              tension: 0
-            }
-          }
-        }
-      });
-
-      const fullScatterEl = document.getElementById('full-scatter');
+      const fullScatterEl = document.getElementById("full-scatter");
       new Chart(fullScatterEl, {
         type: "scatter",
         data: {
