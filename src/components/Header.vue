@@ -18,8 +18,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 300px;
-  background: url('/src/assets/horse-background.png') no-repeat left #333333;
+  height: 400px;
+  background: url('../assets/horse-background.png') no-repeat left #333333;
 }
 
 .subtitle {

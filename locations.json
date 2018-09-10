@@ -1,0 +1,79 @@
+{
+  "authenticationResultCode": "ValidCredentials",
+  "brandLogoUri": "http://dev.virtualearth.net/Branding/logo_powered_by.png",
+  "copyright": "Copyright © 2018 Microsoft and its suppliers. All rights reserved. This API cannot be accessed and the content and any results may not be used, reproduced or transmitted in any manner without express written permission from Microsoft Corporation.",
+  "resourceSets": [
+    {
+      "estimatedTotal": 2,
+      "resources": [
+        {
+          "__type": "Location:http://schemas.microsoft.com/search/local/ws/rest/v1",
+          "bbox": [
+            40.6669120788574,
+            -74.1079864501953,
+            40.7688865661621,
+            -74.0265197753906
+          ],
+          "name": "Jersey City, NJ",
+          "point": {
+            "type": "Point",
+            "coordinates": [40.7174797058105, -74.0438537597656]
+          },
+          "address": {
+            "adminDistrict": "NJ",
+            "adminDistrict2": "Hudson County",
+            "countryRegion": "United States",
+            "formattedAddress": "Jersey City, NJ",
+            "locality": "Jersey City"
+          },
+          "confidence": "High",
+          "entityType": "PopulatedPlace",
+          "geocodePoints": [
+            {
+              "type": "Point",
+              "coordinates": [40.7174797058105, -74.0438537597656],
+              "calculationMethod": "Rooftop",
+              "usageTypes": ["Display"]
+            }
+          ],
+          "matchCodes": ["Ambiguous"]
+        },
+        {
+          "__type": "Location:http://schemas.microsoft.com/search/local/ws/rest/v1",
+          "bbox": [
+            45.4560607449371,
+            -89.7996350164,
+            45.5140015109222,
+            -89.6895007257875
+          ],
+          "name": "Jersey City, WI",
+          "point": {
+            "type": "Point",
+            "coordinates": [45.4850311279297, -89.7445678710938]
+          },
+          "address": {
+            "adminDistrict": "WI",
+            "adminDistrict2": "Lincoln County",
+            "countryRegion": "United States",
+            "formattedAddress": "Jersey City, WI",
+            "locality": "Jersey City"
+          },
+          "confidence": "Low",
+          "entityType": "PopulatedPlace",
+          "geocodePoints": [
+            {
+              "type": "Point",
+              "coordinates": [45.4850311279297, -89.7445678710938],
+              "calculationMethod": "Rooftop",
+              "usageTypes": ["Display"]
+            }
+          ],
+          "matchCodes": ["Ambiguous"]
+        }
+      ]
+    }
+  ],
+  "statusCode": 200,
+  "statusDescription": "OK",
+  "traceId": "b0b3a0ed47df47b88e6c83f0b416e536|BN1D82C45B|7.7.0.0|Ref A: 3A7E04025D1A4DF1B1399320411E5BB1 Ref B: BN3EDGE0316 Ref C: 2018-08-16T18:34:34Z"
+}

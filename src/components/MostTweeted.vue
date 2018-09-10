@@ -1,54 +1,66 @@
 <template>
-  <div>
-    <canvas id="most-tweeted"></canvas>
+  <div ref="chartwrapper">
+    <svg id="most-tweeted" class="chart" viewBox="0 0 1200 500">
+    </svg>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-import moment from "moment";
-import Chart from "chart.js";
+import BarChart from '../charts/barchart';
+const data = require("../assets/data/most-tweeted.json");
+
 export default {
-  created() {
-    let url = 'https://horsetweets.azurewebsites.net/api/GetTimeSeries';
+  mounted() {
+    let wrapper = this.$refs.chartwrapper;
 
-    axios.get(url).then(result => {
-      let chartData = [];
-      let chartLabels = [];
-      let colors = [];
+    let sorted = data.sort((a, b) => {
+      return b.occurences - a.occurences;
+    });
 
-      result.data.forEach(item => {
-        if (item.occurences > 5) {
-          chartData.push(item.occurences);
-          chartLabels.push(item._id);
-          colors.push('rgb(153, 102, 255)');
-        }
-      });
+    let filtered = sorted.filter(item => {
+      return item.occurences > 5;
+    });
 
-      this.createChart(chartData, chartLabels, colors);
-    })
-  },
-  methods: {
-    createChart(data, labels, colors) {
-      let ctx = document.getElementById('most-tweeted');
-
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: 'Accounts quoted more than five times',
-              data: data,
-              backgroundColor: colors
-            }
-          ]
-        }
-      });
-    }
+    let barChart = new BarChart('#most-tweeted', {
+      data: filtered,
+      width: wrapper.clientWidth,
+      xAxis: 'screen_name',
+      yAxis: 'occurences',
+      tooltip: function(d) {
+        return `<strong>${d.screen_name}: ${d.occurences}</strong>`;
+      }
+    });
   }
-}
+};
 </script>
 
-<style scoped>
+<style>
+
+.chart {
+  margin-bottom: 80px;
+}
+
+.bar {
+  fill: RGBA(114, 186, 249, 1.00);
+  transition: fill 0.5s ease;
+}
+
+.bar:hover {
+  fill: RGBA(58, 158, 249, 1.00);
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #fff;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
 </style>
