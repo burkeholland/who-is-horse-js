@@ -73,6 +73,18 @@
         </div>
       </div>
     </section>
+    <section class="section">
+      <div class="sectioncontain">
+        <div class="full">
+          <h1 class="section-title">Data Collection</h1>
+          <div class="section-body">
+            <p>
+              Jasmine - Here is where we need a section on how we collected and stored the data
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
     <section class="section alternate">
       <div class="sectioncontain">
         <div class="full">
