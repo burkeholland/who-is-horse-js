@@ -79,7 +79,14 @@
           <h1 class="section-title">Data Collection</h1>
           <div class="section-body">
             <p>
-              Jasmine - Here is where we need a section on how we collected and stored the data
+              The starting point of Project Horse was collecting tweets from the @horse_js account and placing it in a datastore. We asked ourselves a few questions about what we wanted to collect and how to do it:
+              <ul>
+                <li>How far in time should we go back?</li>
+                <li>How often do we want to collect data and when?</li>
+                <li>Where should we store this data?</li>
+              </ul>
+              
+               We used Azure Functions app to create a time based Function to run on a daily schedule that would collect HorseJS's tweets and store them in CosmosDB with the MongoDB API. We gussed HorseJS and most US based Twitter users would be the least active at 1am EST, which is when the function would collect tweets from that day. With a daily task keeping us right on HorseJS’s hoofs, we turned our attention to getting HorseJS’s older tweets with some backfilling with another timer function. We used HTTP event functions to get data from within CosmosDB for analysis. 
             </p>
           </div>
         </div>
