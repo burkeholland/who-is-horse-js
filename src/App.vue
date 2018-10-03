@@ -6,7 +6,7 @@
         <div class="half">
           <h1 class="section-title">Observation</h1>
           <p>While attending a Machine Learning class, we (Burke Holland and Jasmine Greenaway) learned about statistical models and computers use them to "learn" and ultimately make predictions based on that model. We wondered if it was possible to use some of these same techniques to "predict" who is the real person behind the @horse_js Twitter account.</p>
-          <p>What follows is our stumble into the world of stastics and data science, and what we learned along the way.</p>
+          <p>What follows is our stumble into the world of statistics and data science, and what we learned along the way.</p>
         </div>
         <div class="half">
             <div class="sectioncontain">
@@ -54,7 +54,7 @@
           <h1 class="section-title">Experiment</h1>
           <div class="section-body">
             <p>
-              The first problem that we had to solve was just how to start. Neither of us had much experience with data science or machine learning. After meeting with some people more knowledgable than us, we decided to do several statistical evaluations of the Twitter data to try and narrow the field down to a handful of potential suspects.
+              The first problem that we had to solve was just how to start. Neither of us had much experience with data science or machine learning. After meeting with some people more knowledgeable than us, we decided to do several statistical evaluations of the Twitter data to try and narrow the field down to a handful of potential suspects.
             </p>
             <h2>Tools We Used</h2>
             <p class="full">
@@ -85,8 +85,7 @@
                 <li>How often do we want to collect data and when?</li>
                 <li>Where should we store this data?</li>
               </ul>
-              
-               We used Azure Functions app to create a time based Function to run on a daily schedule that would collect HorseJS's tweets and store them in CosmosDB with the MongoDB API. We gussed HorseJS and most US based Twitter users would be the least active at 1am EST, which is when the function would collect tweets from that day. With a daily task keeping us right on HorseJS’s hoofs, we turned our attention to getting HorseJS’s older tweets with some backfilling with another timer function. We used HTTP event functions to get data from within CosmosDB for analysis. 
+               We created an Azure Functions app to create a time based function that runs on a daily schedule to collect @horse_js's tweets and store them in CosmosDB,using the MongoDB API. We guessed @horse_js and most US based Twitter users would be the least active at 1am EST, which is when the function would collect tweets from the prior day. With a daily task keeping us right on @horse_js's hoofs, we turned our attention to getting @horse_js's older tweets with some backfilling with another timer function. We used HTTP event functions to get data from within CosmosDB for analysis. 
             </p>
           </div>
         </div>
@@ -98,7 +97,7 @@
           <h1 class="section-title">Time Series Analysis</h1>
           <div class="sectioncontain">
             <div class="half">
-              <p>The time series analysis looks at occurances of an event over a period of time and tries to establish a pattern. In our case, we can look at two different time series patterns...</p>
+              <p>The time series analysis looks at occurrences of an event over a period of time and tries to establish a pattern. In our case, we can look at two different time series patterns...</p>
               <ul>
                 <li>@horse_js Tweets</li>
                 <li>Original Tweet quoted by @horse_js</li>
@@ -139,7 +138,7 @@
             <div class="half">
               <p>the next step is to take this list of suspects and rule out anyone who is not in either Central or Eastern time. Twitter provides a <code>timezone</code> field for every user profile, but it's almost always empty. However, they also provide a <code>location</code> field which almost always has a value.</p>
               <p>Notice anything interesting?</p>
-              <p>Out of every single person in the suspects group, only 6 are in either Eastern or Central time. Of those six, 5 are in the New York area. This could indidate that the real @horse_js lives in New York. The people that they quote would likely be real life friends and co-workers.</p>
+              <p>Out of every single person in the suspects group, only 6 are in either Eastern or Central time. Of those six, 5 are in the New York area. This could indicate that the real @horse_js lives in New York. The people that they quote would likely be real life friends and co-workers.</p>
             </div>
             <div class="half">
               <UserLocation></UserLocation>
@@ -158,7 +157,7 @@
           <div class="sectioncontain">
             <div class="half">
               <h2>Key Phrases</h2>
-              <p>Key phrases is described by the Text Analytics API in Azure as "key talking points in the input text". Given how silly a lot of what @horse_js tweets is, we weren't sure how effective this would be. But we were pleasantliy surprised.</p>
+              <p>Key phrases is described by the Text Analytics API in Azure as "key talking points in the input text". Given how silly a lot of what @horse_js tweets is, we weren't sure how effective this would be. But we were pleasantly surprised.</p>
             </div>
             <div class="half">
               <img src="./assets/sentiment.png" alt="">
@@ -197,7 +196,7 @@
           <p>
             The information that we have is loose, but it is enough to point us in the direction of @horse_js. To protect their anonymity, we are not going to name them here. Although it should be relatively easy for you to draw that line yourself based on the data we've laid out here.
           </p>
-          <p>We realize that is going to be dissapointing for some people, but we want to preserve the fun of @horse_js. After all, most of the novelty of a parody account is not knowing who it really is.</p>
+          <p>We realize that is going to be disappointing for some people, but we want to preserve the fun of @horse_js. After all, most of the novelty of a parody account is not knowing who it really is.</p>
 
         </div>
       </div>
