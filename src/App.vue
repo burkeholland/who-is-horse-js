@@ -3,7 +3,8 @@
     <div>
       <full-page ref="fullpage" id="fullpage" :options="options">
         <div class="section">
-          <app-header></app-header>
+          <app-how></app-how>
+          <!-- <app-header></app-header> -->
         </div>
         <div class="section">
           <app-observations></app-observations>
@@ -209,6 +210,7 @@ import Sources from './components/Sources';
 import AppHeader from './components/sections/App-Header';
 import AppObservations from './components/sections/App-Observations';
 import AppQuestion from './components/sections/App-Question';
+import AppHow from './components/sections/App-How';
 
 const ROOT = 'https://horsetweets.azurewebsites.net/api';
 
@@ -223,7 +225,8 @@ export default {
     Sources,
     AppHeader,
     AppObservations,
-    AppQuestion
+    AppQuestion,
+    AppHow
   },
   data() {
     return {
@@ -280,7 +283,7 @@ body {
 
 .content {
   margin: auto;
-  width: 750px;
+  max-width: 750px;
 }
 
 .title {
@@ -431,5 +434,38 @@ section {
 
 .chart {
   overflow: visible;
+}
+
+blockquote{
+  border-left:none;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.quote-badge{
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.quote-box{
+  overflow: hidden;
+  margin-top: -50px;
+  padding-top: -100px;
+  border-radius: 17px;
+  background-color: white;
+  margin-top: 25px;
+  box-shadow: 2px 2px 2px 2px #E0E0E0;
+  text-align: left;
+}
+
+.quotation-mark{
+  font-family: "Times New Roman", Georgia, Serif;
+  margin-top: -10px;
+  font-weight: bold;
+  font-size:100px;
+}
+
+.quote-text{
+  font-size: 19px;
+  margin-top: -150px;
 }
 </style>
