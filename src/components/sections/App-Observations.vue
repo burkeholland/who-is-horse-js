@@ -5,8 +5,8 @@
     <div class="content">
       <div class="row center-xs">
         <div class="col-xs-12">
-          <h1 class="title">Observations</h1>
-          <p>While attending a Machine Learning class, we (Burke Holland and Jasmine Greenaway) learned about statistical models and computers use them to "learn" and ultimately make predictions based on that model. We wondered if it was possible to use some of these same techniques to "predict" who is the real person behind the @horse_js Twitter account.</p>
+          <h1 class="title">Why</h1>
+          <p>While attending a Machine Learning class, we (<a href="https://twitter.com/burkeholland">Burke Holland</a> and <a href="https://twitter.com/paladique">Jasmine Greenaway</A>) learned about statistical models and how computers use them to "learn" and ultimately make predictions.</p><p>We wondered if it was possible to use this technology to do something really hard - like figuring out who in the heck @horse_js really is.</p>
           <p>What follows is our stumble into the world of statistics and data science, and what we learned along the way.</p>
         </div>
         <div class="row middle-xs">

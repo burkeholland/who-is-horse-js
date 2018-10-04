@@ -3,7 +3,7 @@ import * as d3Scale from 'd3-scale';
 import * as d3Axis from 'd3-axis';
 import d3Tip from 'd3-tip';
 
-d3.tip = d3Tip;
+// d3.tip = d3Tip;
 
 class BarChart {
   constructor(el, options) {
@@ -100,7 +100,7 @@ class BarChart {
   }
 
   _createTooltip(chart, bars) {
-    let tip = d3.tip()
+    let tip = d3Tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(d => {

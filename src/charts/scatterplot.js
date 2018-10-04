@@ -4,10 +4,6 @@ import * as d3Axis from 'd3-axis';
 import d3Tip from 'd3-tip';
 import * as moment from 'moment';
 
-d3.scale = d3Scale;
-d3.axis = d3Axis;
-d3.tip = d3Tip;
-
 class ScatterPlot {
   constructor(el, options) {
     this.el = el;
@@ -27,7 +23,7 @@ class ScatterPlot {
     width = width - margin.right - margin.left;
     let data = this.data
 
-    let x = d3.scale.scaleTime()
+    let x = d3Scale.scaleTime()
       .domain([d3.min(data, d => {
         return new Date(moment(d.created_at).format('MM-DD-YYYY'));
       }), d3.max(data, d => {
@@ -35,7 +31,7 @@ class ScatterPlot {
       })])
       .range([0, width]);
 
-    let y = d3.scale.scaleTime()
+    let y = d3Scale.scaleTime()
       .domain([new Date().setHours(0, 0, 0, 0), new Date().setHours(23, 59, 59, 999)])
       .nice(d3.timeDay)
       .range([height, 0]);
@@ -50,14 +46,14 @@ class ScatterPlot {
       .attr('height', height)
       .attr('class', 'main');
 
-    let xAxis = d3.axis.axisBottom(x).tickFormat(d3.timeFormat('%b-%y'));
+    let xAxis = d3Axis.axisBottom(x).tickFormat(d3.timeFormat('%b-%y'));
 
     main.append('g')
       .attr('transform', `translate(0, ${height})`)
       .attr('class', 'main axis date')
       .call(xAxis);
 
-    let yAxis = d3.axis.axisLeft(y).ticks(24).tickFormat(d3.timeFormat('%H:%M'));
+    let yAxis = d3Axis.axisLeft(y).ticks(24).tickFormat(d3.timeFormat('%H:%M'));
 
     main.append('g')
       .attr('transform', 'translate(0,0)')
@@ -89,7 +85,7 @@ class ScatterPlot {
   }
 
   _createTooltip(chart, circles) {
-    let tip = d3.tip()
+    let tip = d3Tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
     .html(d => {
