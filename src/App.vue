@@ -1,6 +1,20 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <div>
+      <full-page ref="fullpage" id="fullpage" :options="options">
+        <div class="section">
+          <app-header></app-header>
+        </div>
+        <div class="section">
+          <app-observations></app-observations>
+        </div>
+      </full-page>
+    </div>
+    <!-- <div class="row">
+      <div class="col-xs-12">
+        <Header></Header>
+      </div>
+    </div>
     <section class="section alternate">
       <div class="sectioncontain">
         <div class="half">
@@ -85,7 +99,7 @@
                 <li>How often do we want to collect data and when?</li>
                 <li>Where should we store this data?</li>
               </ul>
-               We created an Azure Functions app to create a time based function that runs on a daily schedule to collect @horse_js's tweets and store them in CosmosDB,using the MongoDB API. We guessed @horse_js and most US based Twitter users would be the least active at 1am EST, which is when the function would collect tweets from the prior day. With a daily task keeping us right on @horse_js's hoofs, we turned our attention to getting @horse_js's older tweets with some backfilling with another timer function. We used HTTP event functions to get data from within CosmosDB for analysis. 
+               We created an Azure Functions app to create a time based function that runs on a daily schedule to collect @horse_js's tweets and store them in CosmosDB,using the MongoDB API. We guessed @horse_js and most US based Twitter users would be the least active at 1am EST, which is when the function would collect tweets from the prior day. With a daily task keeping us right on @horse_js's hoofs, we turned our attention to getting @horse_js's older tweets with some backfilling with another timer function. We used HTTP event functions to get data from within CosmosDB for analysis.
             </p>
           </div>
         </div>
@@ -200,7 +214,7 @@
 
         </div>
       </div>
-    </section>
+    </section> -->
   </div>
 </template>
 
@@ -213,7 +227,9 @@ import MostTweeted from './components/MostTweeted.vue';
 import UserLocation from './components/UserLocation.vue';
 import MostUsedPhrases from './components/MostUsedPhrases';
 import Sources from './components/Sources';
-import Header from './components/Header';
+
+import AppHeader from './components/sections/App-Header';
+import AppObservations from './components/sections/App-Observations';
 
 const ROOT = 'https://horsetweets.azurewebsites.net/api';
 
@@ -223,10 +239,18 @@ export default {
     HorseTweets,
     OriginalTweets,
     MostTweeted,
-    Header,
     UserLocation,
     MostUsedPhrases,
-    Sources
+    Sources,
+    AppHeader,
+    AppObservations
+  },
+  data() {
+    return {
+      options: {
+        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+      }
+    }
   },
   created() {
     // do all ajax calls here because some components share a data set
@@ -242,6 +266,15 @@ export default {
 </script>
 
 <style lang="scss">
+@import "~flexboxgrid/css/flexboxgrid.css";
+
+@font-face {
+  font-family: CerebriSans;
+  src: url('./assets/fonts/CerebriSans/CerebriSans-Light.otf') format('opentype');
+  font-style: normal;
+  font-weight: normal;
+}
+
 html,
 body {
   padding: 0;
@@ -249,15 +282,40 @@ body {
 }
 
 body {
-  background-color: #333333;
+  background-color: #f5eeec;
 }
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: white;
-  font-size: 18px;
+  font-family: CerebriSans, Arial, sans-serif;
+  color: #484848;
+  font-size: 22px;
+  font-weight: normal;
+  font-weight: 300;
+}
+
+#fullpage {
+  max-width: 1150px;
+  margin: auto;
+}
+
+.content {
+  margin: auto;
+  width: 750px;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 500;
+}
+
+.subtitle {
+  font-size: 28px;
+  font-weight: normal;
+}
+
+.col-xs {
+  margin: 0;
+  padding: 0;
 }
 
 .half {
@@ -276,10 +334,6 @@ body {
 
 .text-center {
   text-align: center;
-}
-
-.title {
-  font-size: 5em;
 }
 
 .logo {
@@ -306,16 +360,6 @@ body {
 section {
   width: 100vw;
   padding: 40px;
-}
-
-.section-title {
-  font-size: 3em;
-  margin-bottom: 0;
-}
-
-.profile {
-  border-radius: 50%;
-  margin: 20px;
 }
 
 .timeseries-highlight {
