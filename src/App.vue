@@ -8,6 +8,9 @@
         <div class="section">
           <app-observations></app-observations>
         </div>
+        <div class="section">
+          <app-question></app-question>
+        </div>
       </full-page>
     </div>
     <!-- <div class="row">
@@ -15,31 +18,6 @@
         <Header></Header>
       </div>
     </div>
-    <section class="section alternate">
-      <div class="sectioncontain">
-        <div class="half">
-          <h1 class="section-title">Observation</h1>
-          <p>While attending a Machine Learning class, we (Burke Holland and Jasmine Greenaway) learned about statistical models and computers use them to "learn" and ultimately make predictions based on that model. We wondered if it was possible to use some of these same techniques to "predict" who is the real person behind the @horse_js Twitter account.</p>
-          <p>What follows is our stumble into the world of statistics and data science, and what we learned along the way.</p>
-        </div>
-        <div class="half">
-            <div class="sectioncontain">
-            <div class="half text-center">
-              <img src="./assets/jasmine.jpg" class="profile" alt="" width="200" height="200">
-              <p>
-                <b>Jasmine Greenaway</b>
-              </p>
-            </div>
-            <div class="half text-center">
-              <img src="./assets/burke.jpg" class="profile" alt="" width="200" height="200">
-              <p>
-                <b>Burke Holland</b>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="section">
       <div class="sectioncontain">
         <div class="half">
@@ -230,6 +208,7 @@ import Sources from './components/Sources';
 
 import AppHeader from './components/sections/App-Header';
 import AppObservations from './components/sections/App-Observations';
+import AppQuestion from './components/sections/App-Question';
 
 const ROOT = 'https://horsetweets.azurewebsites.net/api';
 
@@ -243,7 +222,8 @@ export default {
     MostUsedPhrases,
     Sources,
     AppHeader,
-    AppObservations
+    AppObservations,
+    AppQuestion
   },
   data() {
     return {
