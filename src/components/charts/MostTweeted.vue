@@ -7,7 +7,7 @@
 
 <script>
 import BarChart from '../charts/barchart';
-const data = require("../assets/data/most-tweeted.json");
+const data = require("./most-tweeted.json");
 
 export default {
   mounted() {

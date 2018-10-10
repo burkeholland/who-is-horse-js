@@ -1,16 +1,24 @@
 <template>
   <div id="app">
     <div>
-      <full-page ref="fullpage" id="fullpage" :options="options">
+      <full-page ref="fullpage" id="fullpage" :options="options" @after-load="afterLoad">
         <div class="section">
-          <app-how></app-how>
-          <!-- <app-header></app-header> -->
+          <app-header></app-header>
         </div>
         <div class="section">
           <app-observations></app-observations>
         </div>
         <div class="section">
           <app-question></app-question>
+        </div>
+        <div class="section">
+          <app-how></app-how>
+        </div>
+        <div class="section">
+          <app-tools></app-tools>
+        </div>
+        <div class="section">
+          <app-analysis></app-analysis>
         </div>
       </full-page>
     </div>
@@ -200,33 +208,35 @@
 <script>
 import axios from 'axios';
 
-import HorseTweets from './components/HorseTweets.vue';
-import OriginalTweets from './components/OriginalTweets.vue';
-import MostTweeted from './components/MostTweeted.vue';
-import UserLocation from './components/UserLocation.vue';
-import MostUsedPhrases from './components/MostUsedPhrases';
-import Sources from './components/Sources';
+// import OriginalTweets from './components/OriginalTweets.vue';
+// import MostTweeted from './components/MostTweeted.vue';
+// import UserLocation from './components/UserLocation.vue';
+// import MostUsedPhrases from './components/MostUsedPhrases';
+// import Sources from './components/Sources';
 
 import AppHeader from './components/sections/App-Header';
 import AppObservations from './components/sections/App-Observations';
 import AppQuestion from './components/sections/App-Question';
 import AppHow from './components/sections/App-How';
+import AppTools from './components/sections/App-Tools'
+import AppAnalysis from './components/sections/App-Analysis'
 
 const ROOT = 'https://horsetweets.azurewebsites.net/api';
 
 export default {
   name: 'app',
   components: {
-    HorseTweets,
-    OriginalTweets,
-    MostTweeted,
-    UserLocation,
-    MostUsedPhrases,
-    Sources,
+    // OriginalTweets,
+    // MostTweeted,
+    // UserLocation,
+    // MostUsedPhrases,
+    // Sources,
     AppHeader,
     AppObservations,
     AppQuestion,
-    AppHow
+    AppHow,
+    AppTools,
+    AppAnalysis
   },
   data() {
     return {
@@ -235,15 +245,10 @@ export default {
       }
     }
   },
-  created() {
-    // do all ajax calls here because some components share a data set
-    // axios
-    //   .get(
-    //     `${ROOT}/GetTopQuoted?code=tPqAAmCc4E52cWV7paMpVEBqj6DN8z901USbBGXDkSyUXRVgZhzwPA==`
-    //   )
-    //   .then(people => {
-    //     this.$root.$emit('/data/topquoted', people.data);
-    //   });
+  methods: {
+    afterLoad() {
+      debugger;
+    }
   }
 };
 </script>
@@ -286,6 +291,11 @@ body {
   max-width: 750px;
 }
 
+.outer-content {
+  max-width: 960px;
+  margin: auto;
+}
+
 .title {
   font-size: 48px;
   font-weight: 500;
@@ -317,13 +327,6 @@ body {
 
 .text-center {
   text-align: center;
-}
-
-.logo {
-  width: 100px;
-  height: 100px;
-  vertical-align: middle;
-  margin-right: 20px;
 }
 
 .sectioncontain {

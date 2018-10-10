@@ -19,7 +19,7 @@ class ScatterPlot {
 
   render(width) {
     let margin = { top: 20, right: 15, bottom: 60, left: 60 };
-    let height = 500;
+    let height = 400;
     width = width - margin.right - margin.left;
     let data = this.data
 

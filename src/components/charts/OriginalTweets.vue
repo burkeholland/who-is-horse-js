@@ -6,7 +6,7 @@
 
 <script>
   import ScatterPlot from '../charts/scatterplot';
-  import data from '../assets/data/time-series.json';
+  import data from './time-series.json';
   import * as moment from 'moment';
 
   export default {
