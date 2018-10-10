@@ -1,27 +1,16 @@
 <template>
   <div id="app">
-    <div>
-      <full-page ref="fullpage" id="fullpage" :options="options" @after-load="afterLoad">
-        <div class="section">
-          <app-header></app-header>
-        </div>
-        <div class="section">
-          <app-observations></app-observations>
-        </div>
-        <div class="section">
-          <app-question></app-question>
-        </div>
-        <div class="section">
-          <app-how></app-how>
-        </div>
-        <div class="section">
-          <app-tools></app-tools>
-        </div>
-        <div class="section">
-          <app-analysis></app-analysis>
-        </div>
-      </full-page>
-    </div>
+    <app-header></app-header>
+    <app-observations></app-observations>
+    <app-question></app-question>
+    <app-how></app-how>
+    <app-first-discovery></app-first-discovery>
+    <app-tools></app-tools>
+    <app-analysis></app-analysis>
+    <app-horsplain></app-horsplain>
+    <app-original-tweets></app-original-tweets>
+
+
     <!-- <div class="row">
       <div class="col-xs-12">
         <Header></Header>
@@ -218,8 +207,11 @@ import AppHeader from './components/sections/App-Header';
 import AppObservations from './components/sections/App-Observations';
 import AppQuestion from './components/sections/App-Question';
 import AppHow from './components/sections/App-How';
-import AppTools from './components/sections/App-Tools'
-import AppAnalysis from './components/sections/App-Analysis'
+import AppFirstDiscovery from './components/sections/App-FirstDiscovery';
+import AppTools from './components/sections/App-Tools';
+import AppAnalysis from './components/sections/App-Analysis';
+import AppHorsplain from './components/sections/App-Horsplain';
+import AppOriginalTweets from './components/sections/App-OriginalTweets';
 
 const ROOT = 'https://horsetweets.azurewebsites.net/api';
 
@@ -235,13 +227,17 @@ export default {
     AppObservations,
     AppQuestion,
     AppHow,
+    AppFirstDiscovery,
     AppTools,
-    AppAnalysis
+    AppAnalysis,
+    AppHorsplain,
+    AppOriginalTweets
   },
   data() {
     return {
       options: {
-        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+        anchors: [ 'header', 'observations', 'question', 'how', 'menu', 'analysis', 'horsplain', 'original' ]
       }
     }
   },
@@ -279,21 +275,45 @@ body {
   font-size: 22px;
   font-weight: normal;
   font-weight: 300;
-}
-
-#fullpage {
   max-width: 1150px;
   margin: auto;
 }
 
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.conclusion > h1 {
+  margin-left: -20px;
+  display: inline;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.page {
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .content {
-  margin: auto;
   max-width: 750px;
 }
 
-.outer-content {
-  max-width: 960px;
-  margin: auto;
+.content-extends {
+  margin-left: -155px;
+  margin-right: -155px;
 }
 
 .title {
@@ -370,11 +390,6 @@ section {
 
 .alternate {
   background-color: #414141;
-}
-
-.twitter-tweet {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .twitter-avatar {

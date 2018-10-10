@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ScatterPlot from '../charts/scatterplot';
+  import ScatterPlot from '../../charts/scatterplot';
   import data from './time-series.json';
   import * as moment from 'moment';
 
