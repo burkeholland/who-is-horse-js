@@ -20,21 +20,21 @@ class BarChart {
   }
 
   render(width) {
-    let margin = {
-      top: 20,
-      right: 20,
-      bottom: 20,
-      left: 40
-    };
+    let margin = { top: 20, right: 20, bottom: 50, left: 60 };
+    let height = 500 - margin.top - margin.bottom;
+    width = width - margin.left - margin.right;
 
-    let height = 500;
     let data = this.data;
 
-    let x = d3Scale.scaleBand().rangeRound([0, width - margin.right - margin.left])
+    let x = d3Scale
+      .scaleBand()
+      .rangeRound([0, width])
       .padding(0.1)
-      .domain(data.map(d => {
-        return d[this.xAxis]
-      }));
+      .domain(
+        data.map(d => {
+          return d[this.xAxis];
+        })
+      );
 
     let y = d3Scale
       .scaleLinear()
@@ -46,79 +46,78 @@ class BarChart {
         })
       ]);
 
-      let xAxis = d3Axis.axisBottom(x);
-      let yAxis = d3Axis.axisLeft(y);
+    let xAxis = d3Axis.axisBottom(x);
+    let yAxis = d3Axis.axisLeft(y);
 
-      let chart = d3
-        .select(this.el)
-        .attr('width', '100%')
-        .attr('height', height)
-        .append('g').attr('transform', (d, i) => {
-          return `translate(${margin.left}, ${margin.top})`;
-        });
+    let chart = d3
+      .select(this.el)
+      .attr('width', width + margin.right + margin.left)
+      .attr('height', height + margin.top + margin.bottom);
 
-      // create x axis
-      chart
-        .append('g').attr('class', 'x axis')
-        .attr('transform', `translate(0, ${height})`)
-        .call(xAxis)
-        .selectAll('text')
-        .attr('class', 'label')
-        .attr('y', 10)
-        .attr('x', 10)
-        .attr('dy', '.35em')
-        .attr('transform', 'rotate(45)')
-        .style('text-anchor', 'start');
+    // create x axis
+    chart
+      .append('g')
+      .attr('class', 'x axis')
+      .attr('transform', `translate(0, ${height})`)
+      .call(xAxis)
+      .selectAll('text')
+      .attr('class', 'label')
+      .attr('y', 10)
+      .attr('x', 10)
+      .attr('dy', '.35em')
+      .attr('transform', 'rotate(45)')
+      .style('text-anchor', 'start');
 
-      // create y axis
-      chart
-        .append('g')
-        .attr('class', 'y axis')
-        .call(yAxis);
+    // create y axis
+    chart
+      .append('g')
+      .attr('class', 'y axis')
+      .call(yAxis);
 
-      // create bars
-      let bars = chart.selectAll('.bar')
-        .data(data.reverse())
-        .enter()
-        .append('rect')
-        .attr('class', 'bar')
-        .attr('width', x.bandwidth())
-        .attr("transform", function(d,i) {
-          return "translate(" + [x(d.screen_name), y(d.occurences)] + ")"
-        });
+    // create bars
+    let bars = chart
+      .selectAll('.bar')
+      .data(data.reverse())
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('width', x.bandwidth())
+      .attr('transform', (d, i) => {
+        return 'translate(' + [x(d[this.xAxis]), y(d[this.yAxis])] + ')';
+      });
 
-      // add transitions
-      bars
-        .transition()
-        .duration(1000)
-        .ease(d3.easeLinear)
-          .attr('height', d => {
-            return height - y(d.occurences);
-          });
+    // add transitions
+    bars
+      .transition()
+      .duration(1000)
+      .ease(d3.easeLinear)
+      .attr('height', d => {
+        return height - y(d[this.yAxis]);
+      });
 
-      if (this.tooltip) this._createTooltip(chart, bars);
+    if (this.tooltip) this._createTooltip(chart, bars);
   }
 
   _createTooltip(chart, bars) {
     let tip = d3Tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0])
-    .html(d => {
-      return this.tooltip(d);
-    });
+      .attr('class', 'd3-tip')
+      .offset([-10, 0])
+      .html(d => {
+        return this.tooltip(d);
+      });
 
     // create tooltips
     chart.call(tip);
 
     // add tooltip
     bars
-    .on('mouseover', function(d) {
-      tip.attr('class', 'd3-tip animate').show(d, this);
-    })
-    .on('mouseout', function(d) {
-      tip.attr('class', 'd3-tip').show(d, this);
-      tip.hide();
-    });
+      .on('mouseover', function(d) {
+        tip.attr('class', 'd3-tip animate').show(d, this);
+      })
+      .on('mouseout', function(d) {
+        tip.attr('class', 'd3-tip').show(d, this);
+        tip.hide();
+      });
   }
 }
 

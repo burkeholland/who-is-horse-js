@@ -18,8 +18,8 @@ class ScatterPlot {
   }
 
   render(width) {
-    let margin = { top: 20, right: 15, bottom: 60, left: 60 };
-    let height = 400;
+    let margin = { top: 20, right: 20, bottom: 50, left: 60 };
+    let height = 500 - margin.top - margin.bottom;
     width = width - margin.right - margin.left;
     let data = this.data
 
@@ -36,11 +36,11 @@ class ScatterPlot {
       .nice(d3.timeDay)
       .range([height, 0]);
 
-    let chart = d3.select(this.el)
+    this.chart = d3.select(this.el)
       .attr('width', width + margin.right + margin.left)
       .attr('height', height + margin.top + margin.bottom);
 
-    let main = chart.append('g')
+    let main = this.chart.append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`)
       .attr('width', width)
       .attr('height', height)
@@ -53,6 +53,14 @@ class ScatterPlot {
       .attr('class', 'main axis date')
       .call(xAxis);
 
+    // text label for the x axis
+    this.chart.append("text")
+      .attr("transform",
+            "translate(" + ((width/2) + margin.left) + " ," +
+                          (height + margin.top + 50) + ")")
+      .style('text-anchor', 'middle')
+      .text("Date Of Tweet");
+
     let yAxis = d3Axis.axisLeft(y).ticks(24).tickFormat(d3.timeFormat('%H:%M'));
 
     main.append('g')
@@ -60,31 +68,38 @@ class ScatterPlot {
       .attr('class', 'main axis date')
       .call(yAxis);
 
-    let circles = main.append('g')
-      .selectAll('scatter-dots')
-      .data(data)
-      .enter().append('svg:circle')
+    // text label for the y axis
+    this.chart.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -20)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style('text-anchor', 'middle')
+      .text("Time of Tweet - CST (-6)");
+
+    let circles = main.append('g').attr('class', 'scatter-points');let chartBody = main.append('g');
+
+    data.forEach(item => {
+      circles.append('svg:circle')
       .attr('class', this.pointClass)
       .attr('cx', d => {
-        return x(new Date(d.created_at));
+        return x(new Date(item.created_at));
       })
-      .attr('cy', height);
-
-    circles.
-      transition()
-      .duration(1000)
-      .ease(d3.easeLinear)
+      .transition()
+      .duration(Math.floor(Math.random() * (3000-2000) + 1000))
+      .ease(d3.easeBounce)
       .attr('cy', d => {
-        let today = new Date();
-        let time = new Date(d.created_at);
-        return y(today.setHours(time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds()));
+         let today = new Date();
+         let time = new Date(item.created_at);
+         return y(today.setHours(time.getHours(), time.getMinutes(), time.getSeconds(), time.getMilliseconds()));
       })
-      .attr('r', 10);
+      .attr('r', 5);
+    });
 
-    if (this.tooltip) this._createTooltip(chart, circles);
+    if (this.tooltip) this._createTooltip(data);
   }
 
-  _createTooltip(chart, circles) {
+  _createTooltip(data) {
     let tip = d3Tip()
     .attr('class', 'd3-tip')
     .offset([-10, 0])
@@ -94,15 +109,18 @@ class ScatterPlot {
     });
 
     // create tooltips
-    chart.call(tip);
+    this.chart.call(tip);
 
-    circles.on('mouseover', function(d) {
-      tip.attr('class', 'd3-tip animate').show(d, this);
-    })
-    .on('mouseout', function(d) {
-      tip.attr('class', 'd3-tip').show(d, this);
-      tip.hide();
-    });
+    this.chart
+      .selectAll('circle')
+      .data(data)
+      .on('mouseover', function(d) {
+        tip.attr('class', 'd3-tip animate').show(d, this);
+      })
+      .on('mouseout', function(d) {
+        tip.attr('class', 'd3-tip').show(d, this);
+        tip.hide();
+      });
   }
 }
 

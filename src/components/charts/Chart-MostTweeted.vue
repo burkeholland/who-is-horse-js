@@ -1,12 +1,11 @@
 <template>
   <div ref="chartwrapper">
-    <svg id="most-tweeted" class="chart" viewBox="0 0 1200 500">
-    </svg>
+    <svg id="most-tweeted" class="chart"></svg>
   </div>
 </template>
 
 <script>
-import BarChart from '../charts/barchart';
+import BarChart from "../../charts/barchart";
 const data = require("./most-tweeted.json");
 
 export default {
@@ -21,11 +20,11 @@ export default {
       return item.occurences > 5;
     });
 
-    let barChart = new BarChart('#most-tweeted', {
+    let barChart = new BarChart("#most-tweeted", {
       data: filtered,
       width: wrapper.clientWidth,
-      xAxis: 'screen_name',
-      yAxis: 'occurences',
+      xAxis: "screen_name",
+      yAxis: "occurences",
       tooltip: function(d) {
         return `<strong>${d.screen_name}: ${d.occurences}</strong>`;
       }
@@ -35,18 +34,14 @@ export default {
 </script>
 
 <style>
-
-.chart {
-  margin-bottom: 80px;
-}
-
 .bar {
-  fill: RGBA(114, 186, 249, 1.00);
+  fill: RGBA(114, 186, 249, 1);
+  padding: 10px;
   transition: fill 0.5s ease;
 }
 
 .bar:hover {
-  fill: RGBA(58, 158, 249, 1.00);
+  fill: RGBA(58, 158, 249, 1);
 }
 
 .axis text {

@@ -1,6 +1,6 @@
 <template>
   <div ref="chartwrapper">
-    <svg id="originalTweets"></svg>
+    <svg id="originalTweets" class="chart"></svg>
   </div>
 </template>
 

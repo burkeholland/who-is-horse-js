@@ -1,33 +1,43 @@
 <template>
-  <div v-height>
+  <div v-height class="slide">
     <div class="page row middle-xs center-xs">
       <div class="col-xs-12 content">
         <div class="row center-xs">
           <div class="col-xs">
             <h1>Time Series Analysis</h1>
-            <div class="row end-xs">
-              <div class="col-xs">
-                <img src="../../assets/pink-x.svg" alt="" class="dot dot-1">
-              </div>
-            </div>
-            <p>This scatter plot represents each @horse_js tweet as a dot. The day the tweet occured is plotted on the y-axis. The time it occured is plotted on the x-axis.</p><p>We we see here is a period of time each day where @horse_js is inactive. <strong>This is likely when they are asleep</strong>. From this we can discern which time zone @horse_js might live in.</p>
+            <p>
+              Not really knowing where to start, we first plotted every tweet we had from horse_js as it occured over time. The day is charted on the y-axis, and the
+              <i>time of day</i> on the y. All times are plotted in
+              <b>Central Standard Time</b>.
+            </p>
+            <p>What do you see?</p>
           </div>
         </div>
         <div class="row center-xs content-extends">
           <div class="col-xs">
+            <div class="row end-xs">
+              <div class="col-xs">
+                <img src="../../assets/pink-x.svg" alt class="dot dot-1">
+              </div>
+            </div>
             <horse-tweets></horse-tweets>
           </div>
         </div>
+        <br>
         <div class="row center-xs">
           <div class="col-xs conclusion">
             <div class="row start-xs">
               <div class="col-xs">
-                <img src="../../assets/blue-oval.svg"  class="dot dot-2" alt="">
+                <img src="../../assets/blue-oval.svg" class="dot dot-2" alt>
               </div>
             </div>
-            <img src="../../assets/attention.svg" alt="">
+            <img src="../../assets/attention.svg" alt>
             <h1>Conclusion</h1>
-            <p>@horse_js lives in either the Central or Eastern time zone</p>
+            <p>
+              @horse_js
+              <b>lives in either the Central or Eastern time zone</b>. We know that because their activity dwindles sharply in the evening and disapears between approximately 11 - 12 PM CST and reappears at around 8-9 AM CST.
+            </p>
+            <p>There are a myriad of other, less helpful conclusions that we could draw from this data. What other things do you see here?</p>
           </div>
         </div>
       </div>
@@ -36,18 +46,20 @@
 </template>
 
 <script>
-  import HorseTweets from '../charts/HorseTweets.vue'
+import HorseTweets from "../charts/HorseTweets.vue";
 
-  export default {
-    components: {
-      HorseTweets
-    }
+export default {
+  components: {
+    HorseTweets
   }
+};
 </script>
 
 <style scoped>
 .dot-1 {
-
+  position: absolute;
+  margin-right: -200px;
+  margin-top: -100px;
 }
 
 .dot-2 {

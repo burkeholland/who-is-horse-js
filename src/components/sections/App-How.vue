@@ -1,38 +1,35 @@
 <template>
-    <div v-height>
-      <div class="page row middle-xs center-xs">
-        <div class="col-xs-12 content">
-          <div class="row end-xs">
-            <div class="col-xs">
-              <img src="../../assets/pink-x.svg" class="dot dot-1" alt="">
-            </div>
+  <div v-height class="slide">
+    <div class="page row middle-xs center-xs">
+      <div class="col-xs-12 content">
+        <div class="row end-xs">
+          <div class="col-xs">
+            <img src="../../assets/pink-x.svg" class="dot dot-1" alt>
           </div>
-          <div class="row center-xs">
-            <p>Not knowing anything about Machine Learning or Statistics, the first question we had to ask ourselves was, "How in the WORLD are we doing to do this?"</p>
-            <p>To answer that question, we turned to Dr. Vadim Karpusenko at Microsoft. After explaining what we were trying to do and what our data set was (twitter activity), Dr. Karpusenko told us...</p>
-          </div>
-          <div class="row center-xs">
-            <div class="col-xs-12">
-              <blockquote class="quote-box">
-                <p class="quotation-mark">
-                  “
-                </p>
-                <p class="quote-text">
-                  You don't have a machine learning problem. You have a statistics problem.
-                </p>
-              </blockquote>
-              <img class="vadim" src="../../assets/vadim.png" >
-            </div>
+        </div>
+        <div class="row center-xs">
+          <h1>The Doctor Is In</h1>
+          <p>Not knowing anything about Machine Learning or Statistics, the first question we had to ask ourselves was, "How in the WORLD are we doing to do this?"</p>
+          <p>To answer that question, we turned to Dr. Vadim Karpusenko at Microsoft. After explaining what we were trying to do and what our data set was (twitter activity), Dr. Karpusenko told us...</p>
+        </div>
+        <div class="row center-xs">
+          <div class="col-xs-12">
+            <blockquote class="quote-box">
+              <p class="quotation-mark">“</p>
+              <p
+                class="quote-text"
+              >You don't have a machine learning problem. You have a statistics problem.</p>
+            </blockquote>
+            <img class="vadim" src="../../assets/vadim.png">
           </div>
         </div>
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-
-  }
+export default {};
 </script>
 
 <style scoped>
