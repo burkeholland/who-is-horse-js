@@ -6,28 +6,32 @@
 
 <script>
 import BarChart from "../../charts/barchart";
-const data = require("./most-tweeted.json");
+import EventBus from "../../EventBus";
 
 export default {
-  mounted() {
-    let wrapper = this.$refs.chartwrapper;
+  created() {
+    EventBus.$on("/mosttweeted/data", data => {
+      let wrapper = this.$refs.chartwrapper;
 
-    let sorted = data.sort((a, b) => {
-      return b.occurences - a.occurences;
-    });
+      debugger;
 
-    let filtered = sorted.filter(item => {
-      return item.occurences > 5;
-    });
+      let sorted = data.sort((a, b) => {
+        return b.occurences - a.occurences;
+      });
 
-    let barChart = new BarChart("#most-tweeted", {
-      data: filtered,
-      width: wrapper.clientWidth,
-      xAxis: "screen_name",
-      yAxis: "occurences",
-      tooltip: function(d) {
-        return `<strong>${d.screen_name}: ${d.occurences}</strong>`;
-      }
+      let filtered = sorted.filter(item => {
+        return item.occurences > 5;
+      });
+
+      let barChart = new BarChart("#most-tweeted", {
+        data: filtered,
+        width: wrapper.clientWidth,
+        xAxis: "screen_name",
+        yAxis: "occurences",
+        tooltip: function(d) {
+          return `<strong>${d.screen_name}: ${d.occurences}</strong>`;
+        }
+      });
     });
   }
 };

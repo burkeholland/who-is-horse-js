@@ -20,7 +20,7 @@
                 <img src="../../assets/pink-x.svg" alt class="dot dot-1">
               </div>
             </div>
-            <horse-tweets></horse-tweets>
+            <chart-horse-tweets></chart-horse-tweets>
           </div>
         </div>
         <br>
@@ -46,18 +46,17 @@
 </template>
 
 <script>
-import HorseTweets from "../charts/HorseTweets.vue";
+import ChartHorseTweets from "../charts/Chart-HorseTweets.vue";
 
 export default {
   components: {
-    HorseTweets
+    ChartHorseTweets
   }
 };
 </script>
 
 <style scoped>
 .dot-1 {
-  position: absolute;
   margin-right: -200px;
   margin-top: -100px;
 }

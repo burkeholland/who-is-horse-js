@@ -5,22 +5,23 @@
 </template>
 
 <script>
-  import ScatterPlot from '../../charts/scatterplot';
-  import data from './time-series.json';
-  import * as moment from 'moment';
+import ScatterPlot from "../../charts/scatterplot";
+import * as moment from "moment";
+import EventBus from "../../EventBus.js";
 
-  export default {
-    mounted() {
+export default {
+  created() {
+    EventBus.$on("/timeseries/data", data => {
       let wrapper = this.$refs.chartwrapper;
 
       let horseData = data.map(item => {
         return item.horse;
-      })
+      });
 
-      let chart = new ScatterPlot('#timeSeries', {
+      let chart = new ScatterPlot("#timeSeries", {
         data: horseData,
         width: wrapper.clientWidth,
-        pointClass: 'horse-point',
+        pointClass: "horse-point",
         tooltip: function(d) {
           console.log(JSON.stringify(d));
           return `
@@ -33,14 +34,17 @@
               <div class="tweet-body">
                 <p>${d.text}</p>
                 <div>
-                  <time>${moment(d.created_at).format('LT')} - ${moment(d.created_at).format('MMMM Do YYYY')}</time>
+                  <time>${moment(d.created_at).format("LT")} - ${moment(
+            d.created_at
+          ).format("MMMM Do YYYY")}</time>
                 </div>
               </div>
-            </div>`
+            </div>`;
         }
       });
-    }
+    });
   }
+};
 </script>
 
 <style>
@@ -48,13 +52,14 @@
   font: 10px sans-serif;
 }
 
-.axis line, .axis path {
+.axis line,
+.axis path {
   shape-rendering: crispEdges;
   stroke: black;
   fill: none;
 }
 
 .horse-point {
-  fill: rgba(224, 0, 120, 0.3)
+  fill: rgba(224, 0, 120, 0.3);
 }
 </style>

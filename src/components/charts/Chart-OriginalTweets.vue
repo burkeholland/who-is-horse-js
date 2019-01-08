@@ -5,21 +5,24 @@
 </template>
 
 <script>
-  import ScatterPlot from '../../charts/scatterplot';
-  import data from './time-series.json';
-  import * as moment from 'moment';
+import ScatterPlot from "../../charts/scatterplot";
+import EventBus from "../../EventBus.js";
+import * as moment from "moment";
 
-  export default {
-    mounted() {
+export default {
+  created() {
+    EventBus.$on("/timeseries/data", data => {
       let wrapper = this.$refs.chartwrapper;
 
-      let originalData = data.filter(item => {
-        return item.original;
-      }).map(item => {
-        return item.original
-      });
+      let originalData = data
+        .filter(item => {
+          return item.original;
+        })
+        .map(item => {
+          return item.original;
+        });
 
-      let chart = new ScatterPlot('#originalTweets', {
+      let chart = new ScatterPlot("#originalTweets", {
         data: originalData,
         width: wrapper.clientWidth,
         tooltip: function(d) {
@@ -33,14 +36,17 @@
               <div class="tweet-body">
                 <p>${d.text}</p>
                 <div>
-                  <time>${moment(d.created_at).format('LT')} - ${moment(d.created_at).format('MMMM Do YYYY')}</time>
+                  <time>${moment(d.created_at).format("LT")} - ${moment(
+            d.created_at
+          ).format("MMMM Do YYYY")}</time>
                 </div>
               </div>
-            </div>`
+            </div>`;
         }
       });
-    }
+    });
   }
+};
 </script>
 
 <style>
@@ -48,13 +54,14 @@
   font: 10px sans-serif;
 }
 
-.axis line, .axis path {
+.axis line,
+.axis path {
   shape-rendering: crispEdges;
   stroke: black;
   fill: none;
 }
 
 circle {
-  fill: rgba(134, 171, 208, 0.42)
+  fill: rgba(134, 171, 208, 0.42);
 }
 </style>

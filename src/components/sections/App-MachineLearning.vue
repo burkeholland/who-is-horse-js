@@ -22,13 +22,7 @@
         </div>
         <div class="row center-xs content-extends">
           <div class="col-xs-12">
-            <chart-common-phrases></chart-common-phrases>
-          </div>
-        </div>
-        <div class="row center-xs bottom">
-          <div class="col-xs">
-            <p>Scroll</p>
-            <img src="../../assets/arrow-bottom.svg" alt>
+            <chart-most-used-phrases></chart-most-used-phrases>
           </div>
         </div>
       </div>
@@ -37,11 +31,11 @@
 </template>
 
 <script>
-import ChartCommonPhrases from "../charts/Chart-CommonPhrases.vue";
+import ChartMostUsedPhrases from "../charts/Chart-MostUsedPhrases.vue";
 
 export default {
   components: {
-    ChartCommonPhrases
+    ChartMostUsedPhrases
   }
 };
 </script>

@@ -1,0 +1,18 @@
+[
+  { "_id": "JavaScript", "count": 39 },
+  { "_id": "webpack", "count": 12 },
+  { "_id": "npm", "count": 10 },
+  { "_id": "JS", "count": 10 },
+  { "_id": "Ember", "count": 11 },
+  { "_id": "Node", "count": 6 },
+  { "_id": "TypeScript", "count": 6 },
+  { "_id": "ES6", "count": 5 },
+  { "_id": "CSS", "count": 5 },
+  { "_id": "people", "count": 4 },
+  { "_id": "js", "count": 3 },
+  { "_id": "website", "count": 3 },
+  { "_id": "web", "count": 3 },
+  { "_id": "tools", "count": 3 },
+  { "_id": "Mozilla", "count": 3 },
+  { "_id": "Firefox", "count": 3 }
+]

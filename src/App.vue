@@ -16,11 +16,15 @@
     <app-sources></app-sources>
     <app-review></app-review>
     <app-buffer></app-buffer>
+    <app-reveal></app-reveal>
+    <app-notes></app-notes>
+    <app-final></app-final>
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import EventBus from "./EventBus.js";
 
 import AppHeader from "./components/sections/App-Header";
 import AppObservations from "./components/sections/App-Observations";
@@ -38,6 +42,9 @@ import AppMachineLearning from "./components/sections/App-MachineLearning";
 import AppSources from "./components/sections/App-Sources.vue";
 import AppReview from "./components/sections/App-Review.vue";
 import AppBuffer from "./components/sections/App-Buffer.vue";
+import AppReveal from "./components/sections/App-Reveal.vue";
+import AppNotes from "./components/sections/App-Notes.vue";
+import AppFinal from "./components/sections/App-Final.vue";
 
 const ROOT = "https://horsetweets.azurewebsites.net/api";
 
@@ -59,7 +66,10 @@ export default {
     AppMachineLearning,
     AppSources,
     AppReview,
-    AppBuffer
+    AppBuffer,
+    AppReveal,
+    AppNotes,
+    AppFinal
   },
   data() {
     return {
@@ -77,10 +87,16 @@ export default {
       }
     };
   },
-  methods: {
-    afterLoad() {
-      debugger;
-    }
+  mounted() {
+    const API = "https://horsetweets.azurewebsites.net/api";
+
+    axios.get(`${API}/GetTimeSeries`).then(response => {
+      EventBus.$emit("/timeseries/data", response.data);
+    });
+
+    axios.get(`${API}/GetMostTweeted`).then(response => {
+      EventBus.$emit("/mosttweeted/data", response.data);
+    });
   }
 };
 </script>
@@ -329,5 +345,9 @@ blockquote {
 .quote-text {
   font-size: 19px;
   margin-top: -150px;
+}
+
+a {
+  color: #fd69a9;
 }
 </style>

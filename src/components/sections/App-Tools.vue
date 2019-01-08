@@ -36,7 +36,7 @@
                         >
                       </div>
                     </div>
-                    <div class="col-xs-9">
+                    <div class="col-xs-9 start-xs">
                       <div class="product-description">
                         <h2 class="box-title">Azure Functions</h2>
                         <p class="box-description">Event driven, serverless architecture</p>
@@ -62,7 +62,7 @@
                         >
                       </div>
                     </div>
-                    <div class="col-xs-9">
+                    <div class="col-xs-9 start-xs">
                       <div class="product-description">
                         <h2 class="box-title">Cosmos DB</h2>
                         <p class="box-description">Globally distributed, NoSQL database</p>
