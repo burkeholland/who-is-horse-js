@@ -26,9 +26,12 @@
           </div>
         </div>
         <div class="row center-xs bottom">
-          <div class="col-xs">
+          <div class="col-xs" v-if="released">
             <p>Scroll</p>
             <img src="../../assets/arrow-bottom.svg" alt>
+          </div>
+          <div class="col-xs" v-if="!released">
+            <p>Coming Soon</p>
           </div>
         </div>
       </div>
@@ -37,7 +40,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['released']
+};
 </script>
 
 <style scoped>

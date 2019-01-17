@@ -41,7 +41,7 @@
                         <h2 class="box-title">Azure Functions</h2>
                         <p class="box-description">Event driven, serverless architecture</p>
                         <p>
-                          <a href>Learn more</a>
+                          <a href="https://code.visualstudio.com/tutorials/functions-extension/getting-started?WT.mc_id=whoishorsejs-dotcom-buhollan">Learn more</a>
                         </p>
                       </div>
                     </div>
@@ -67,7 +67,7 @@
                         <h2 class="box-title">Cosmos DB</h2>
                         <p class="box-description">Globally distributed, NoSQL database</p>
                         <p>
-                          <a href>Learn more</a>
+                          <a href="https://code.visualstudio.com/docs/azure/mongodb?WT.mc_id=whoishorsejs-dotcom-buhollan">Learn more</a>
                         </p>
                       </div>
                     </div>

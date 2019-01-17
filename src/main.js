@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from './App.vue';
+import VModal from 'vue-js-modal';
 
 // Register a global custom directive called `v-focus`
 Vue.directive('height', {
@@ -8,6 +9,8 @@ Vue.directive('height', {
     el.style.minHeight = `${window.outerHeight}px`;
   }
 });
+
+Vue.use(VModal);
 
 const vue = new Vue({
   el: '#app',

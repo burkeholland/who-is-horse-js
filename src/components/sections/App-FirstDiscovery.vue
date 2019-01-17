@@ -2,7 +2,7 @@
   <div v-height class="slide">
     <div class="page row center-xs middle-xs">
       <div class="col-xs-12 content">
-        <h1>Our First Discovery</h1>
+        <h1>Our First Lesson In Machine Learning</h1>
         <p>Which brings us to the first thing this project taught us:
           <strong>Machine Learning is not the answer to everything.</strong>
         </p>

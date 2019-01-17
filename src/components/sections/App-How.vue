@@ -9,8 +9,14 @@
         </div>
         <div class="row center-xs">
           <h1>The Doctor Is In</h1>
-          <p>Not knowing anything about Machine Learning or Statistics, the first question we had to ask ourselves was, "How in the WORLD are we doing to do this?"</p>
-          <p>To answer that question, we turned to Dr. Vadim Karpusenko at Microsoft. After explaining what we were trying to do and what our data set was (twitter activity), Dr. Karpusenko told us...</p>
+          <p>Not knowing anything about Machine Learning or Statistics, the first question we had to answer was, "<b>How</b> are we doing to do this?"
+          </p>
+          <p>
+            To answer that question, we enlisted the help of
+            <a
+              href="https://twitter.com/vadi"
+            >Dr. Vadim Karpusenko</a> at Microsoft. After explaining what we were trying to do and what our data set was (twitter activity), Vadim told us...
+          </p>
         </div>
         <div class="row center-xs">
           <div class="col-xs-12">

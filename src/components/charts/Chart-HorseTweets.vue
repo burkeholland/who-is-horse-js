@@ -1,5 +1,6 @@
 <template>
   <div ref="chartwrapper">
+    <h2 v-show="isLoading">Loading Data (takes a sec...🐴)</h2>
     <svg id="timeSeries" class="chart"></svg>
   </div>
 </template>
@@ -10,6 +11,11 @@ import * as moment from "moment";
 import EventBus from "../../EventBus.js";
 
 export default {
+  data() {
+    return {
+      isLoading: true
+    };
+  },
   created() {
     EventBus.$on("/timeseries/data", data => {
       let wrapper = this.$refs.chartwrapper;
@@ -42,6 +48,8 @@ export default {
             </div>`;
         }
       });
+
+      this.isLoading = false;
     });
   }
 };

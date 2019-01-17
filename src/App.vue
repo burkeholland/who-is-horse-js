@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <app-header></app-header>
+    <app-header :released="isReleased"></app-header>
+  <div v-if="isReleased">
     <app-observations></app-observations>
     <app-question></app-question>
     <app-how></app-how>
@@ -16,9 +17,12 @@
     <app-sources></app-sources>
     <app-review></app-review>
     <app-buffer></app-buffer>
-    <app-reveal></app-reveal>
-    <app-notes></app-notes>
-    <app-final></app-final>
+    <div class="show-reveal" :class="{ reveal: !hasConsent, show: hasConsent }">
+      <app-reveal></app-reveal>
+      <app-notes></app-notes>
+      <app-final></app-final>
+    </div>
+  </div>
   </div>
 </template>
 
@@ -73,6 +77,8 @@ export default {
   },
   data() {
     return {
+      isReleased: true,
+      hasConsent: false,
       options: {
         anchors: [
           "header",
@@ -97,6 +103,14 @@ export default {
     axios.get(`${API}/GetMostTweeted`).then(response => {
       EventBus.$emit("/mosttweeted/data", response.data);
     });
+
+    EventBus.$on("showMe", () => {
+      this.hasConsent = true;
+      setTimeout(function() {
+        const showMe = document.getElementById("showMe");
+        showMe.scrollIntoView();
+      }, 500);
+    });
   }
 };
 </script>
@@ -118,6 +132,21 @@ body {
   margin: 0;
 }
 
+.show-reveal {
+  transition: opacity 5s;
+}
+
+.show {
+  display: inherit;
+  opacity: 1;
+}
+
+.reveal {
+  display: none;
+  opacity: 0;
+  transition: opacity 5s;
+}
+
 body {
   background-color: #f5eeec;
 }
@@ -130,6 +159,19 @@ body {
   font-weight: 300;
   max-width: 1150px;
   margin: auto;
+}
+
+.flex {
+  display: flex;
+  &.is-vertically-centered {
+    align-items: center;
+  }
+  &.is-horizontally-centered {
+    justify-content: center;
+  }
+  &.flex-column {
+    flex-direction: column;
+  }
 }
 
 .right {
@@ -147,11 +189,6 @@ body {
 .conclusion > h1 {
   margin-left: -20px;
   display: inline;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
 }
 
 .slide {
@@ -349,5 +386,9 @@ blockquote {
 
 a {
   color: #fd69a9;
+}
+
+.chart-space {
+  height: 500px;
 }
 </style>

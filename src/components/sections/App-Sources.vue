@@ -12,9 +12,11 @@
             </div>
             <p>
               At this point we felt like all signs were pointing
-              <b>strongly</b> to one person. But we still didn't have anything that we felt really sealed the deal. Then we found the smoking gun.
-            </p>
-            <p>Twitter always records the source of a tweet. It could be the web, iOS or Android or third party app. If we take a look at all of @horse_js's tweets, they always originate from one of two sources.</p>
+              <b>strongly</b> to one person. But we still didn't have anything that we felt really sealed the deal.</p>
+              <p>
+                And then we found the smoking gun.
+              </p>
+            <p>Twitter always records the source of a tweet. Whether its web, iOS, Android or a third party app. If we take a look at all of @horse_js's tweets, they always originate from one of two sources.</p>
           </div>
         </div>
         <div class="row center-xs content-extends">
@@ -28,7 +30,7 @@
             <h1>Conclusion</h1>
             <p>
               @horse_js
-              <b>uses Android</b>. This is paticularly damning piece of evidence because of all our suspects, only one uses Android and it's the same one we've been suspecting thus far.
+              <b>uses Android</b>. This is a particularly damning piece of evidence because of all our suspects, only one uses Android and it's the same one we've been suspecting thus far.
             </p>
             <p>This also tells us that @horse_js is likely just one person. If it was multiple people, we would expect to see a different source (like iPhone) in there somewhere.</p>
           </div>

@@ -10,7 +10,7 @@
                 <img src="../../assets/pink-x.svg" alt class="dot dot-1">
               </div>
             </div>
-            <p>This lead us to believe that if we looked at who @horse_js quotes most often, we could examine common followers of all of these accounts and that would leave us with a pool of possible suspects. Here is a chart of all the people that @horse_js quoted more than 5 times in the past two years.</p>
+            <p>If we look at who @horse_js quotes most often, maybe we can examine common followers of all of these accounts and that would leave us with a pool of possible suspects. Here is a chart of all the people that @horse_js quoted more than 5 times in the past two years.</p>
           </div>
         </div>
         <div class="row center-xs content-extends">
@@ -32,7 +32,7 @@
               When we compared the common followers of all of these accounts,
               <b>all we found were a few spam bots.</b> Sometimes you chase down a dead end.
             </p>
-            <p>But what else does this chart tell us? There are some people that @horse_js likes to quote frequently. And one that it REALLY loves to quote.</p>
+            <p>But what else does this chart tell us? There are some people that @horse_js likes to quote frequently. After that it drops fairly consistently.</p>
           </div>
         </div>
       </div>

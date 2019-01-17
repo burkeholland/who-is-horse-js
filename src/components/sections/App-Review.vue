@@ -15,9 +15,9 @@
               <div class="col-xs">
                 <ul>
                   <li>@horse_js lives in either Central or Eastern Time</li>
-                  <li>@horse_js tweets about Ember a LOT</li>
+                  <li>@horse_js tweets about JavaScript, Webpack and Ember a lot</li>
                   <li>@horse_js is an Android user</li>
-                  <li>@horse_js quotes one person far more than others and this same person fits all the above criteria</li>
+                  <li>@horse_js quotes some people far more than others and one of these people fits all the above criteria</li>
                 </ul>
               </div>
             </div>

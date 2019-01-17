@@ -10,8 +10,10 @@
                 <img src="../../assets/orange-triangle.svg" class="dot dot-1" alt>
               </div>
             </div>
-            <p>Is it possible to determine the true identity of a Twitter account using Twitter data and Machine Learning?</p>
-            <p>@horse_js is a parody twitter account that tweets fragments of other people's tweets. It's been doing this since February 2012. Since then it has tweeted more than 7K times.</p>
+            <p>
+              <b>Is it possible to determine the true identity of a Twitter account using Twitter data and Machine Learning?</b>
+            </p>
+            <p>@horse_js is a twitter parody account that tweets fragments of other people's tweets or blog posts. It first came online in February, 2012. Since then it has tweeted more than 7K times.</p>
           </div>
         </div>
         <div class="row center-xs content-extends">

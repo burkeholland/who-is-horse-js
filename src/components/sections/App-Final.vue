@@ -8,7 +8,7 @@
           </div>
         </div>
         <div class="row start-xs">
-          <div class="col-xs start-xs">
+          <div class="col-xs start-xs flex flex-column is-horizontally-centered">
             <p>
               Research project by
               <b>
@@ -25,11 +25,11 @@
           </div>
         </div>
         <div class="row start-xs">
-          <div class="col-xs start-xs">
+          <div class="col-xs start-xs flex flex-column is-horizontally-centered">
             <p>
               Site design by
               <b>
-                <a href="https://twitter.com/silm_m">Silm</a>
+                <a href="https://twitter.com/m_silm">Silm</a>
               </b>.
             </p>
           </div>
@@ -38,7 +38,7 @@
           </div>
         </div>
         <div class="row start-xs">
-          <div class="col-xs start-xs">
+          <div class="col-xs start-xs flex flex-column is-horizontally-centered">
             <p>
               @horse_js tweets by
               <b>
@@ -47,7 +47,7 @@
             </p>
           </div>
           <div class="col-xs">
-            <img src="../../assets/tom-is-horse.png" width="600px" alt>
+            <img src="../../assets/tom-is-horse.png" width="375px" alt>
           </div>
         </div>
       </div>

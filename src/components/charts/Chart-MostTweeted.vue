@@ -1,5 +1,6 @@
 <template>
   <div ref="chartwrapper">
+    <h2 v-show="isLoading">Loading Data (takes a sec...🐴)</h2>
     <svg id="most-tweeted" class="chart"></svg>
   </div>
 </template>
@@ -9,11 +10,14 @@ import BarChart from "../../charts/barchart";
 import EventBus from "../../EventBus";
 
 export default {
+  data() {
+    return {
+      isLoading: true
+    };
+  },
   created() {
     EventBus.$on("/mosttweeted/data", data => {
       let wrapper = this.$refs.chartwrapper;
-
-      debugger;
 
       let sorted = data.sort((a, b) => {
         return b.occurences - a.occurences;
@@ -32,6 +36,8 @@ export default {
           return `<strong>${d.screen_name}: ${d.occurences}</strong>`;
         }
       });
+
+      this.isLoading = false;
     });
   }
 };

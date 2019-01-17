@@ -6,11 +6,10 @@
           <div class="col-xs">
             <h1>Time Series Analysis</h1>
             <p>
-              Not really knowing where to start, we first plotted every tweet we had from horse_js as it occured over time. The day is charted on the y-axis, and the
-              <i>time of day</i> on the y. All times are plotted in
-              <b>Central Standard Time</b>.
+              Based on suggestions from Vadim, the first thing we attempted was a "Time Series Analysis". We plotted every tweet we had from horse_js as it occured over time. The day is charted on the x-axis, and the
+              <i>time of day</i> on the y.
             </p>
-            <p>What do you see?</p>
+            <p>What do you see when you look at this graph? Notice anything that jumps out at you immediately?</p>
           </div>
         </div>
         <div class="row center-xs content-extends">
@@ -35,9 +34,10 @@
             <h1>Conclusion</h1>
             <p>
               @horse_js
-              <b>lives in either the Central or Eastern time zone</b>. We know that because their activity dwindles sharply in the evening and disapears between approximately 11 - 12 PM CST and reappears at around 8-9 AM CST.
+              <b>lives in either the Central or Eastern time zone</b>. Their activity dwindles sharply in the evening and disapears between ~11 PM - 12 AM CST and reappears at ~8 AM - 9 AM CST because they are likely asleep.
             </p>
-            <p>There are a myriad of other, less helpful conclusions that we could draw from this data. What other things do you see here?</p>
+            <p>We could also use this to make very general assumptions about horse_js. For instance, they likely do not like to stay out late. We know that because of the consitent offline pattern.</p>
+            <p>What conclusions do you draw from this data?</p>
           </div>
         </div>
       </div>

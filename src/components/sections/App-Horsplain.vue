@@ -12,8 +12,8 @@
             </div>
             <div class="row">
               <div class="col-xs-6">
-                <p>Looking at the @horse_js data revealed a second twitter account called @horsplain_js. This account responds to each @horse_js tweet with the original tweet that @horse_js is quoting.</p>
-                <p>That gave us a whole new set of data to work with.</p>
+                <p>Looking at the @horse_js data revealed a second twitter account called <a href="https://twitter.com/horsplain_js/with_replies">@horsplain_js</a>. This account responds to each @horse_js tweet with the original tweet that @horse_js is quoting.</p>
+                <p>Horsplain is the key witness in our investigation, and it gives us an entirely new set of data to look at.</p>
               </div>
               <div class="col-xs-6">
                 <div class="horsplain-tweet">

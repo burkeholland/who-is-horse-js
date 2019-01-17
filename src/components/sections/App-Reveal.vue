@@ -1,5 +1,5 @@
 <template>
-  <div v-height class="slide">
+  <div id="showMe" v-height class="slide">
     <div class="page row center-xs middle-xs">
       <div class="col-xs-6 content">
         <h1>Tom Dale</h1>
