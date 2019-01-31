@@ -2,7 +2,6 @@ import * as d3 from 'd3';
 import * as d3Scale from 'd3-scale';
 import * as d3Axis from 'd3-axis';
 import d3Tip from 'd3-tip';
-import * as moment from 'moment';
 
 class ScatterPlot {
   constructor(el, options) {
@@ -25,9 +24,9 @@ class ScatterPlot {
 
     let x = d3Scale.scaleTime()
       .domain([d3.min(data, d => {
-        return new Date(moment(d.created_at).format('MM-DD-YYYY'));
+        return Date.parse(d.created_at)
       }), d3.max(data, d => {
-        return new Date(moment(d.created_at).format('MM-DD-YYYY'));
+        return Date.parse(d.created_at)
       })])
       .range([0, width]);
 
@@ -83,7 +82,7 @@ class ScatterPlot {
       circles.append('svg:circle')
       .attr('class', this.pointClass)
       .attr('cx', d => {
-        return x(new Date(item.created_at));
+        return x(Date.parse(item.created_at));
       })
       .transition()
       .duration(Math.floor(Math.random() * (3000-2000) + 1000))
