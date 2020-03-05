@@ -38,7 +38,7 @@
     "file-loader": "^1.1.4",
     "i": "^0.3.6",
     "node-sass": "^4.5.3",
-    "npm": "^6.1.0",
+    "npm": "^6.13.4",
     "sass-loader": "^6.0.6",
     "vue-cli-plugin-webpack-bundle-analyzer": "^1.2.0",
     "vue-loader": "^13.0.5",
