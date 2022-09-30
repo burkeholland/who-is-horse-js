@@ -13,7 +13,7 @@
     "@progress/kendo-charts-vue-wrapper": "^2018.2.620",
     "axios": "^0.18.0",
     "chart.js": "^2.7.2",
-    "d3": "^5.7.0",
+    "d3": "^7.6.1",
     "d3-tip": "^0.9.1",
     "flexboxgrid": "^6.3.1",
     "jquery": "^3.3.1",
